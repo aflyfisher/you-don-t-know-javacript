@@ -29,7 +29,7 @@ function foo(){
 // 3,11,11,11....
 
 var name = "李四";
-(function alert1(name,global){
+(function alert1 (name,global){
     console.log(name);//张三
     console.log(global.name)//李四
-})("张三",window)
+})("张三",window);
