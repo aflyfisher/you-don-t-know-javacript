@@ -78,3 +78,29 @@
     console.log(b);//能访问的到,13
     console.log(a)//not defined
 ```
+##四、声明提升
+包括变量和函数在内的所有声明都会在任何代码被执行前首先被处理（被提升到了最前面）,<font color = red>通常是函数声明提升到了最前面，其次是变量声明</font>。看一个例子：
+``` javascript
+    foo(); // "b"
+    var a = true;
+    if (a) {
+    function foo() { console.log("a"); }
+    }
+    else {
+    function foo() { console.log("b"); }
+
+```
+其实这里有一个函数声明和变量声明提升的过程,上面的代码执行过程是：
+``` javascript
+    if (a) {
+        function foo() { console.log("a"); }
+    }
+    else {
+        function foo() { console.log("b");
+    }
+    var a;
+    //上面的代码执行完后，确定a是一个udefined，所以执行false语句；
+    foo(); // 由于此时a是一个undefined，所以在判断语句中执行的额是else语句，所以结果是"b"
+    a = true;
+    foo();//"b"，此时早已经判断过了，foo的声明也已成定局，所以是"b";
+```
